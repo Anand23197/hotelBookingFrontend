@@ -1,0 +1,1 @@
+export const DATA_API = "http://localhost:8800/api";
