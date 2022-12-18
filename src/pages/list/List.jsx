@@ -2,9 +2,9 @@ import "./list.css"
 import { useLocation} from "react-router-dom"
 import Header from '../../components/header/Header'
 import Navbar from '../../components/navbar/Navbar'
-import {format}  from "date-fns";
 import { useState } from "react"
 import { DateRange } from "react-date-range";
+import moment from 'moment'
 import useFetch from "../../hooks/useFetch"
 import SearchItem from "../../components/searchItem/SearchItem";
 
@@ -41,7 +41,10 @@ export const List = () => {
               <label htmlFor="">Check-in Date</label>
               <span 
               onClick={()=>setOpenDate(!openDate)}
-              >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(dates[0].endDate, "dd/MM/yyyy")}`}</span>
+              >
+            
+                {`${moment(dates[0].startDate).format("dd/MM/yyyy")} to ${moment(dates[0].endDate).format('dd/MM/yyyy')}`}
+                </span>
               {openDate && <DateRange
                onChange={item=>setDates([item.selection])}
                minDate = {new Date()}
