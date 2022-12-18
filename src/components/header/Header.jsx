@@ -6,7 +6,7 @@ import {GiPerson} from "react-icons/gi"
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import {format}  from "date-fns";
+import moment from 'moment'
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -98,7 +98,9 @@ const Header = ({type}) => {
 
             <div className="headerSearchItem">
               <FaCalendarDay className="headerIcon"/>
-              <span onClick={()=>setOpenDate(!openDate)} className="headerSearchText">{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(dates[0].endDate, "dd/MM/yyyy")}`}</span>
+              <span onClick={()=>setOpenDate(!openDate)} className="headerSearchText">
+              {`${moment(dates[0].startDate).format("dd/MM/yyyy")} to ${moment(dates[0].endDate).format('dd/MM/yyyy')}`}
+                </span>
              { openDate  && <DateRange
               editableDateInputs={true}
               onChange={item => setDates([item.selection])}
